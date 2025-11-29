@@ -1,7 +1,6 @@
 import Button from "./Button";
-import AddEntryModal from "./AddEntryModal";
 
-const Header = () => {
+const Header = ({ open, setOpen }) => {
   return (
     <header className="bg-base-100 shadow-md">
       <div className="container mx-auto navbar py-8">
@@ -10,9 +9,7 @@ const Header = () => {
           <Button
             label=" + New Entry"
             className="btn-primary"
-            onClick={() =>
-              document.getElementById("add-entry-modal").showModal()
-            }
+            onClick={() => setOpen(!open)}
           />
         </div>
       </div>

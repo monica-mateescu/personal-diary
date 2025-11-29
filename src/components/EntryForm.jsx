@@ -1,12 +1,20 @@
 import Button from "./Button";
 
-const EntryForm = () => {
+const EntryForm = ({ setOpen }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setOpen(false);
+  };
   return (
     <>
       <h3 className="font-bold text-lg text-center mb-4">
         Write your thoughts ✍
       </h3>
-      <form className="w-full bg-base-200 border-base-300 rounded-box border p-4">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full bg-base-200 border-base-300 rounded-box border p-4"
+      >
         <fieldset className="fieldset mb-4">
           <legend className="fieldset-legend">Title</legend>
           <input
