@@ -1,7 +1,13 @@
+import EntryCard from "./EntryCard";
+
 const EntryList = () => {
   return (
-    <div>EntryList</div>
-  )
-}
+    <>
+      <EntryCard />
 
-export default EntryList
+      <EntryCard />
+    </>
+  );
+};
+
+export default EntryList;
