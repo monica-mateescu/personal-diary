@@ -25,6 +25,12 @@ const EntryForm = () => {
       return;
 
     const entries = JSON.parse(localStorage.getItem("entries")) || [];
+    const entryExists = entries.some((e) => e.date === date);
+    if (entryExists) {
+      alert("You already wrote today's journal. Come back tomorrow ✨");
+      setForm(initialState);
+      return;
+    }
 
     const updatedEntries = [
       ...entries,
