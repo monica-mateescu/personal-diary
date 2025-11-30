@@ -1,6 +1,9 @@
 import EntryForm from "./EntryForm";
+import { useModal } from "../contexts/ModalContext";
 
-const AddEntryModal = ({ open, setOpen }) => {
+const AddEntryModal = () => {
+  const { open, setOpen } = useModal();
+
   return (
     <dialog className={`modal ${open ? "modal-open" : ""}`}>
       <div className="modal-box">
@@ -12,7 +15,7 @@ const AddEntryModal = ({ open, setOpen }) => {
             ✕
           </button>
         </form>
-        <EntryForm setOpen={setOpen} />
+        <EntryForm />
       </div>
     </dialog>
   );

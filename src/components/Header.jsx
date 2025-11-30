@@ -1,6 +1,8 @@
 import Button from "./Button";
+import { useModal } from "../contexts/ModalContext";
 
-const Header = ({ open, setOpen }) => {
+const Header = () => {
+  const { open, setOpen } = useModal();
   return (
     <header className="bg-base-100 shadow-md">
       <div className="container mx-auto navbar py-8">

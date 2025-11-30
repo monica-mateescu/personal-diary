@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Button from "./Button";
+import { useModal } from "../contexts/ModalContext";
 
-const EntryForm = ({ setOpen }) => {
+const EntryForm = () => {
+  const { setOpen } = useModal();
   const [form, setForm] = useState({
     title: "",
     date: "",
