@@ -9,7 +9,7 @@ const initialState = {
   content: "",
 };
 const EntryForm = ({ setEntries }) => {
-  const { setOpen } = useModal();
+  const { toggleModal } = useModal();
   const [form, setForm] = useState(initialState);
 
   const handleChange = (e) => {
@@ -34,7 +34,7 @@ const EntryForm = ({ setEntries }) => {
 
     setEntries((prevEntries) => {
       const updatedEntries = [
-        ...prevEntries,
+        ...(prevEntries ? prevEntries : []),
         {
           id: Date.now(),
           title: title,
@@ -50,7 +50,7 @@ const EntryForm = ({ setEntries }) => {
     });
 
     setForm(initialState);
-    setOpen(false);
+    toggleModal("newEntry");
   };
 
   const disabled =
