@@ -2,7 +2,7 @@ import Button from "./Button";
 import { useModal } from "../contexts/ModalContext";
 
 const Header = () => {
-  const { open, setOpen } = useModal();
+  const { toggleModal } = useModal();
   return (
     <header className="bg-base-100 shadow-md">
       <div className="container mx-auto navbar py-8">
@@ -11,7 +11,7 @@ const Header = () => {
           <Button
             label=" + New Entry"
             className="btn-primary"
-            onClick={() => setOpen(!open)}
+            onClick={() => toggleModal("newEntry")}
           />
         </div>
       </div>
