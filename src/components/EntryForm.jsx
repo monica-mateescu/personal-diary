@@ -2,14 +2,15 @@ import { useState } from "react";
 import Button from "./Button";
 import { useModal } from "../contexts/ModalContext";
 
+const initialState = {
+  title: "",
+  date: "",
+  imageUrl: "",
+  content: "",
+};
 const EntryForm = () => {
   const { setOpen } = useModal();
-  const [form, setForm] = useState({
-    title: "",
-    date: "",
-    image: "",
-    content: "",
-  });
+  const [form, setForm] = useState(initialState);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,18 +19,34 @@ const EntryForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { title, date, image, content } = form;
+    const { title, date, imageUrl, content } = form;
 
-    if (!title.trim() || !date.trim() || !image.trim() || !content.trim())
+    if (!title.trim() || !date.trim() || !imageUrl.trim() || !content.trim())
       return;
 
+    const entries = JSON.parse(localStorage.getItem("entries")) || [];
+
+    const updatedEntries = [
+      ...entries,
+      {
+        id: Date.now(),
+        title: title,
+        date: date,
+        imageUrl: imageUrl,
+        content: content,
+      },
+    ];
+
+    localStorage.setItem("entries", JSON.stringify(updatedEntries));
+
+    setForm(initialState);
     setOpen(false);
   };
 
   const disabled =
     !form.title.trim() ||
     !form.date.trim() ||
-    !form.image.trim() ||
+    !form.imageUrl.trim() ||
     !form.content.trim();
 
   return (
@@ -62,8 +79,8 @@ const EntryForm = () => {
           <legend className="fieldset-legend">Image URL</legend>
           <input
             type="url"
-            name="image"
-            value={form.image}
+            name="imageUrl"
+            value={form.imageUrl}
             onChange={handleChange}
             className="w-full input"
             placeholder="https://"
