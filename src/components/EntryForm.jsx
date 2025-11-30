@@ -8,7 +8,7 @@ const initialState = {
   imageUrl: "",
   content: "",
 };
-const EntryForm = () => {
+const EntryForm = ({ setEntries }) => {
   const { setOpen } = useModal();
   const [form, setForm] = useState(initialState);
 
@@ -32,18 +32,22 @@ const EntryForm = () => {
       return;
     }
 
-    const updatedEntries = [
-      ...entries,
-      {
-        id: Date.now(),
-        title: title,
-        date: date,
-        imageUrl: imageUrl,
-        content: content,
-      },
-    ];
+    setEntries((prevEntries) => {
+      const updatedEntries = [
+        ...prevEntries,
+        {
+          id: Date.now(),
+          title: title,
+          date: date,
+          imageUrl: imageUrl,
+          content: content,
+        },
+      ];
 
-    localStorage.setItem("entries", JSON.stringify(updatedEntries));
+      localStorage.setItem("entries", JSON.stringify(updatedEntries));
+
+      return updatedEntries;
+    });
 
     setForm(initialState);
     setOpen(false);
