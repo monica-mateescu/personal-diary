@@ -1,12 +1,17 @@
 import EntryDetails from "./EntryDetail";
-const ViewEntryModal = () => {
+import { useModal } from "../contexts/ModalContext";
+
+const ViewEntryModal = ({ entry }) => {
+  const { modals, toggleModal } = useModal();
   return (
-    <dialog id="view-entry-modal" className="modal">
+    <dialog className={`modal ${modals.viewEntry ? "modal-open" : ""}`}>
       <div className="modal-box w-11/12 max-w-5xl">
-        <EntryDetails />
+        <EntryDetails entry={entry} />
         <div className="modal-action">
           <form method="dialog">
-            <button className="btn">Close</button>
+            <button className="btn" onClick={() => toggleModal("viewEntry")}>
+              Close
+            </button>
           </form>
         </div>
       </div>

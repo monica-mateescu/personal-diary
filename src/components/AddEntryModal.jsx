@@ -1,21 +1,21 @@
 import EntryForm from "./EntryForm";
 import { useModal } from "../contexts/ModalContext";
 
-const AddEntryModal = () => {
-  const { open, setOpen } = useModal();
+const AddEntryModal = ({ setEntries }) => {
+  const { modals, toggleModal } = useModal();
 
   return (
-    <dialog className={`modal ${open ? "modal-open" : ""}`}>
+    <dialog className={`modal ${modals.newEntry ? "modal-open" : ""}`}>
       <div className="modal-box">
         <form method="dialog">
           <button
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-            onClick={() => setOpen(false)}
+            onClick={() => toggleModal("newEntry")}
           >
             ✕
           </button>
         </form>
-        <EntryForm />
+        <EntryForm setEntries={setEntries} />
       </div>
     </dialog>
   );
