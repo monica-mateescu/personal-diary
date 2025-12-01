@@ -1,11 +1,13 @@
 import EntryForm from "./EntryForm";
 import { useModal } from "../contexts/ModalContext";
+import { useEntries } from "../contexts/EntriesContext";
 
-const AddEntryModal = ({ setEntries }) => {
-  const { modals, toggleModal } = useModal();
+const AddEntryModal = () => {
+  const { toggleModal } = useModal();
+  const { setEntries } = useEntries();
 
   return (
-    <dialog className={`modal ${modals.newEntry ? "modal-open" : ""}`}>
+    <dialog className="modal modal-open">
       <div className="modal-box">
         <form method="dialog">
           <button

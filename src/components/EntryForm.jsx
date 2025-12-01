@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./Button";
+import { useEntries } from "../contexts/EntriesContext";
 import { useModal } from "../contexts/ModalContext";
 
 const initialState = {
@@ -8,7 +9,8 @@ const initialState = {
   imageUrl: "",
   content: "",
 };
-const EntryForm = ({ setEntries }) => {
+const EntryForm = () => {
+  const { entries, addEntry } = useEntries();
   const { toggleModal } = useModal();
   const [form, setForm] = useState(initialState);
 
@@ -24,7 +26,6 @@ const EntryForm = ({ setEntries }) => {
     if (!title.trim() || !date.trim() || !imageUrl.trim() || !content.trim())
       return;
 
-    const entries = JSON.parse(localStorage.getItem("entries")) || [];
     const entryExists = entries.some((e) => e.date === date);
     if (entryExists) {
       alert("You already wrote today's journal. Come back tomorrow ✨");
@@ -32,21 +33,12 @@ const EntryForm = ({ setEntries }) => {
       return;
     }
 
-    setEntries((prevEntries) => {
-      const updatedEntries = [
-        ...(prevEntries ? prevEntries : []),
-        {
-          id: Date.now(),
-          title: title,
-          date: date,
-          imageUrl: imageUrl,
-          content: content,
-        },
-      ];
-
-      localStorage.setItem("entries", JSON.stringify(updatedEntries));
-
-      return updatedEntries;
+    addEntry({
+      id: Date.now(),
+      title,
+      date,
+      imageUrl,
+      content,
     });
 
     setForm(initialState);

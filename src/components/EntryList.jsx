@@ -1,13 +1,14 @@
 import EntryCard from "./EntryCard";
+import { useEntries } from "../contexts/EntriesContext";
 
-const EntryList = ({ entries }) => {
-  if (!entries) {
+const EntryList = ({ setEntry }) => {
+  const { entries } = useEntries();
+
+  if (entries.length === 0) {
     return (
       <section>
         <h2 className="font-bold text-lg text-center">
-          {" "}
-          🌱 Your diary is empty for now. Start writing your thoughts and watch
-          your story grow!
+          Your diary is empty for now. Start writing your thoughts ✍️
         </h2>
       </section>
     );
@@ -16,7 +17,11 @@ const EntryList = ({ entries }) => {
   return (
     <section>
       {entries.map((entry) => (
-        <EntryCard key={entry.id} entry={entry} />
+        <EntryCard
+          key={entry.id}
+          entry={entry}
+          onClick={() => setEntry(entry)}
+        />
       ))}
     </section>
   );
