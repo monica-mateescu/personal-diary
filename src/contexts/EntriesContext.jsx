@@ -9,7 +9,7 @@ function reducer(state, action) {
 
       localStorage.setItem("entries", JSON.stringify(entries));
 
-      return entries;
+      return entries.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
 
     case "SET_ENTRIES":
