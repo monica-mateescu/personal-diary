@@ -1,7 +1,7 @@
 import EntryCard from "./EntryCard";
 import { useEntries } from "../contexts/EntriesContext";
 
-const EntryList = ({ setEntry }) => {
+const EntryList = ({ setSelectedEntry }) => {
   const { entries } = useEntries();
 
   if (entries.length === 0) {
@@ -20,7 +20,7 @@ const EntryList = ({ setEntry }) => {
         <EntryCard
           key={entry.id}
           entry={entry}
-          onClick={() => setEntry(entry)}
+          onClick={() => setSelectedEntry(entry)}
         />
       ))}
     </section>

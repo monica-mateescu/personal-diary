@@ -1,7 +1,7 @@
 import EntryDetails from "./EntryDetail";
 import { useModal } from "../contexts/ModalContext";
 
-const ViewEntryModal = ({ entry }) => {
+const ViewEntryModal = ({ selectedEntry }) => {
   const { closeModal } = useModal();
   return (
     <dialog className="modal modal-open">
@@ -12,7 +12,7 @@ const ViewEntryModal = ({ entry }) => {
           >
             ✕
           </button>
-        <EntryDetails entry={entry} />
+        <EntryDetails entry={selectedEntry} />
         <div className="modal-action">
           <form method="dialog">
             <button className="btn" onClick={() => closeModal("viewEntry")}>

@@ -9,15 +9,15 @@ import { useState } from "react";
 
 const Home = () => {
   const { modals } = useModal();
-  const [entry, setEntry] = useState(null);
+  const [selectedEntry, setSelectedEntry] = useState(null);
 
   return (
     <div className="flex flex-col min-h-screen ">
       <Header />
       <main className="container mx-auto py-8 grow">
-        <EntryList setEntry={setEntry} />
+        <EntryList setSelectedEntry={setSelectedEntry} />
         {modals.newEntry && <AddEntryModal />}
-        {modals.viewEntry && <ViewEntryModal entry={entry} />}
+        {modals.viewEntry && <ViewEntryModal selectedEntry={selectedEntry} />}
       </main>
       <Footer />
     </div>
