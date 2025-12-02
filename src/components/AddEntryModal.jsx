@@ -3,7 +3,7 @@ import { useModal } from "../contexts/ModalContext";
 import { useEntries } from "../contexts/EntriesContext";
 
 const AddEntryModal = () => {
-  const { toggleModal } = useModal();
+  const { closeModal } = useModal();
   const { setEntries } = useEntries();
 
   return (
@@ -12,7 +12,7 @@ const AddEntryModal = () => {
         <form method="dialog">
           <button
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-            onClick={() => toggleModal("newEntry")}
+            onClick={() => closeModal("newEntry")}
           >
             ✕
           </button>

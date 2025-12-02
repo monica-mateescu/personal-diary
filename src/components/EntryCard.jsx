@@ -3,7 +3,7 @@ import { useModal } from "../contexts/ModalContext";
 
 const EntryCard = ({ entry, onClick }) => {
   const { title, date, imageUrl } = entry;
-  const { toggleModal } = useModal();
+  const { openModal } = useModal();
   return (
     <div
       onClick={onClick}
@@ -26,7 +26,7 @@ const EntryCard = ({ entry, onClick }) => {
           <Button
             label="See Entry"
             className="btn-secondary btn-outline"
-            onClick={() => toggleModal("viewEntry")}
+            onClick={() => openModal("viewEntry")}
           />
         </div>
       </div>
