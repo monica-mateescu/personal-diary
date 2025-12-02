@@ -11,7 +11,7 @@ const initialState = {
 };
 const EntryForm = () => {
   const { entries, addEntry } = useEntries();
-  const { toggleModal } = useModal();
+  const { closeModal } = useModal();
   const [form, setForm] = useState(initialState);
 
   const handleChange = (e) => {
@@ -42,7 +42,7 @@ const EntryForm = () => {
     });
 
     setForm(initialState);
-    toggleModal("newEntry");
+    closeModal("newEntry");
   };
 
   const disabled =
