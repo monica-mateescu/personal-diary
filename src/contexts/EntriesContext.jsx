@@ -5,11 +5,11 @@ const EntriesContext = createContext();
 function reducer(state, action) {
   switch (action.type) {
     case "ADD_ENTRY": {
-      const newEntry = [...state, action.payload];
+      const entries = [...state, action.payload];
 
-      localStorage.setItem("entries", JSON.stringify(newEntry));
+      localStorage.setItem("entries", JSON.stringify(entries));
 
-      return newEntry;
+      return entries;
     }
 
     case "SET_ENTRIES":
